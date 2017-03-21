@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+quiz = Quiz.create([{ title: 'Ruby quiz' }])
+question = Question.create([{ body: 'Which of these is a datatype?', quiz_id: quiz.id }])

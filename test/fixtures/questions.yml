@@ -1,0 +1,7 @@
+ruby_question_one:
+  body: Which of these are a datatype?
+  quiz: ruby_quiz
+
+ruby_question_two:
+    body: How to declare a variable
+    quiz: ruby_quiz

@@ -1,4 +1,4 @@
-<p>
-  <h3>Ruby basics</h3>
-  <h3>Git basics</h3>
-</p>
+
+<% @quizzes.each do |q| %>
+  <h3><%= q.title %></h3>
+<% end %>

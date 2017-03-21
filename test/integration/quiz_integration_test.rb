@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class QuizTest < ActionDispatch::IntegrationTest
+class QuizIntegrationTest < ActionDispatch::IntegrationTest
 
   test 'users can see a list of quizes' do
     get '/quizzes'

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: Number
+  question: ruby_question_one
+
+two:
+  body: Rope
+  question: ruby_question_one
+
+three:
+  body: String
+  question: ruby_question_one

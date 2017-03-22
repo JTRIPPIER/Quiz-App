@@ -1,6 +1,6 @@
-<h3>Add a new question</h3>
+<h3>Add a new answer</h3>
 
-<%= form_for @question, url: admin_quiz_questions_path(@quiz) do |f| %>
+<%= form_for @answer, url: admin_quiz_question_answers_path(@quiz, @question) do |f| %>
   <div class="form-group">
     <%= f.label :body %>
     <%= f.text_field :body, class: 'form-control' %>

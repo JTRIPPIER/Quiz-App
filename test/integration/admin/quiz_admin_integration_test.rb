@@ -51,4 +51,21 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
 
     assert has_css?('p', :text => 'Is this a new question?')
   end
+
+  test 'admins can add an answer for a question' do
+    quiz = quizzes(:ruby_quiz)
+
+    visit admin_quiz_path(quiz)
+
+    within('tbody tr:last-child') do
+      click_link('Add answers')
+    end
+
+    fill_in('Body', :with => 'This is the answer')
+    click_button 'Save'
+
+    page.assert_no_selector('.alert-warning', :minimum => 1)
+    assert has_css?('li', :text =>"This is the answer")
+  end
+
 end

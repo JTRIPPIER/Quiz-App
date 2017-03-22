@@ -13,7 +13,7 @@ class Admin::QuestionsController < ApplicationController
       redirect_to admin_quiz_path(@quiz)
     else
       flash[:alert] = 'Failed to create question'
-      redirect_to new_admin_quiz_questions_path(@quiz)
+      redirect_to new_admin_quiz_question_path(@quiz)
     end
   end
 

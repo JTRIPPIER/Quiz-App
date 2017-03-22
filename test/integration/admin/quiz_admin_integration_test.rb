@@ -39,4 +39,16 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
 
     assert has_link?('A New Quiz')
   end
+
+  test 'admins can add a question to a quiz' do
+    quiz = quizzes(:ruby_quiz)
+
+    visit admin_quiz_path(quiz)
+    click_button 'Add question'
+
+    fill_in('Body', :with => 'Is this a new question?')
+    click_button 'Save'
+
+    assert has_css?('p', :text => 'Is this a new question?')
+  end
 end

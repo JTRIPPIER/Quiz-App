@@ -1,9 +1,9 @@
 <h2><%= @quiz.title %></h2>
+<%= button_to "Add question", new_admin_quiz_questions_path(@quiz), :class => "btn btn-default", :method => :get %>
 
 <% @quiz.questions.each do |q| %>
-  <p>
+<p>
     <%= q.body %>
-  </p>
-  <button class="btn btn-default">Edit</button>
-  <button class="btn btn-danger">Delete</button>
+</p>
+<button class="btn btn-danger">Delete</button>
 <% end %>

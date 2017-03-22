@@ -28,6 +28,15 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
     click_button 'Save'
 
     assert has_link?('New Quiz Name')
+  end
 
+  test 'admins can create a new quiz' do
+    visit admin_quizzes_path
+    click_link 'Create a new quiz'
+
+    fill_in('Title', :with => 'A New Quiz')
+    click_button 'Save'
+
+    assert has_link?('A New Quiz')
   end
 end

@@ -1,3 +1,7 @@
+<p>
+  <%= link_to 'Create a new quiz', new_admin_quiz_path %>
+</p>
+
 <h2>Select an quiz</h2>
 <% @quizzes.each do |q| %>
   <h3><%= link_to q.title, edit_admin_quiz_path(q) %></h3>

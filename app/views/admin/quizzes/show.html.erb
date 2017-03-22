@@ -1,9 +1,21 @@
-<h2><%= @quiz.title %></h2>
-<%= button_to "Add question", new_admin_quiz_questions_path(@quiz), :class => "btn btn-default", :method => :get %>
+<div>
+  <%= button_to "Add question", new_admin_quiz_questions_path(@quiz), :class => "btn btn-default pull-right", :method => :get %>
+  <h2><%= @quiz.title %></h2>
+</div>
 
-<% @quiz.questions.each do |q| %>
-<p>
-    <%= q.body %>
-</p>
-<button class="btn btn-danger">Delete</button>
-<% end %>
+<table class="table">
+  <tbody>
+    <% @quiz.questions.each do |q| %>
+    <tr>
+      <td>
+        <p class="panel-body">
+          <%= q.body %>
+        </p>
+      </td>
+      <td>
+        <button class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

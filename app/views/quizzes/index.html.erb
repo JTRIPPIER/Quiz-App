@@ -1,4 +1,4 @@
 <h2>Select an quiz</h2>
 <% @quizzes.each do |q| %>
-  <h3><%= q.title %></h3>
+  <h3><%= link_to q.title, quiz_path(q) %></h3>
 <% end %>

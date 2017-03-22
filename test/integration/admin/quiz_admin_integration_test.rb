@@ -27,7 +27,7 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
     fill_in('Title', :with => 'New Quiz Name')
     click_button 'Save'
 
-    has_link?('New Quiz Name')
+    assert has_link?('New Quiz Name')
 
   end
 end

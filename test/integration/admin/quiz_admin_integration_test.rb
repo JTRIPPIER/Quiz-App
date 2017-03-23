@@ -46,10 +46,26 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
     visit admin_quiz_path(quiz)
     click_button 'Add question'
 
-    fill_in('Body', :with => 'Is this a new question?')
+    fill_in('Question', :with => 'Is this a new question?')
     click_button 'Save'
 
     assert has_css?('p', :text => 'Is this a new question?')
+    page.assert_no_selector('.alert-warning', :minimum => 1)
+  end
+
+  test 'admins can add a question and answer to a quiz' do
+    quiz = quizzes(:ruby_quiz)
+
+    visit admin_quiz_path(quiz)
+    click_button 'Add question'
+
+    fill_in('Question', :with => 'Is this a new question?')
+    fill_in('question_answers_attributes_0_body', :with => 'Yes it is')
+    click_button 'Save'
+
+    assert has_css?('p', :text => 'Is this a new question?')
+    page.assert_no_selector('.alert-warning', :minimum => 1)
+    assert has_css?('li', :text =>"Yes it is")
   end
 
   test 'admins can add an answer for a question' do

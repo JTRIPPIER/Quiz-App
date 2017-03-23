@@ -1,7 +1,8 @@
 class Admin::QuestionsController < ApplicationController
   def new
     @quiz = Quiz.find(params[:quiz_id])
-    @question = @quiz.questions.new
+    @question = @quiz.questions.new()
+    @question.answers.build
   end
 
   def create
@@ -18,7 +19,6 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def question_params
-    # params.require(:quiz).permit(:title, questions: [:body, :quiz_id] )
-    params.require(:question).permit(:body)
+    params.require(:question).permit(:body, answers_attributes: [:body])
   end
 end

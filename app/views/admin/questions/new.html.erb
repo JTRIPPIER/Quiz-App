@@ -1,11 +1,35 @@
 <h3>Add a new question</h3>
 
-<%= form_for @question, url: admin_quiz_questions_path(@quiz) do |f| %>
-  <div class="form-group">
-    <%= f.label :body %>
+<%= form_for @question, url: admin_quiz_questions_path(@quiz), :html => {:class => "form-horizontal"} do |f| %>
+<div class="form-group">
+  <%= f.label :body, "Question", class: "col-sm-2" %>
+  <div class="col-sm-12">
     <%= f.text_field :body, class: 'form-control' %>
   </div>
-  <div class="form-group">
+</div>
+
+<label>Answers</label>
+<%= f.fields_for :answers do |a| %>
+<div class='form-group'>
+  <div class="col-sm-11">
+    <%= a.text_field :body, class: 'form-control' %>
+  </div>
+  <div class="col-sm-1">
+    <span class="glyphicon glyphicon-remove"></span>
+  </div>
+</div>
+
+<% end %>
+
+<div class="form-group">
+  <div class="col-sm-12">
+    <button type="button" class="btn btn-info">Add answer</button>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-12">
     <%= f.submit 'Save', class: 'btn btn-success' %>
   </div>
+</div>
 <% end %>

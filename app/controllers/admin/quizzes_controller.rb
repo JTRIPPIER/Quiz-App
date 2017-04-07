@@ -1,4 +1,4 @@
-class Admin::QuizzesController < ApplicationController
+class Admin::QuizzesController < AdminController
   def index
     @quizzes = Quiz.all
   end

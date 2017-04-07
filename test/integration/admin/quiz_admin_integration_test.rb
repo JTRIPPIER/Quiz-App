@@ -1,19 +1,23 @@
 require 'test_helper'
 
 class QuizIntegrationTest < ActionDispatch::IntegrationTest
-  test 'admins can see a list of quizzes' do
-    get admin_quizzes_path
+  setup do
+    login
+  end
 
-    assert_select 'h3', 'Ruby basics'
-    assert_select 'h3', 'Git basics'
+  test 'admins can see a list of quizzes' do
+    visit admin_quizzes_path
+
+    assert_selector "h3", text: "Ruby basics"
+    assert_selector "h3", text: "Git basics"
   end
 
   test 'admins can see a list of questions for a quiz' do
-    get admin_quiz_path(quizzes(:ruby_quiz))
+    visit admin_quiz_path(quizzes(:ruby_quiz))
 
-    assert_select 'h2', 'Ruby basics'
-    assert_select 'p', 'Which of these are a datatype?'
-    assert_select 'p', 'How to declare a variable'
+    assert_selector "h2", text: "Ruby basics"
+    assert_selector "p", text: "Which of these are a datatype?"
+    assert_selector "p", text: "How to declare a variable"
   end
 
   test 'admins can edit a quiz' do
@@ -65,7 +69,6 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
     page.assert_no_selector('.alert-warning', minimum: 1)
     page.assert_selector('.alert-info', minimum: 1)
     assert_equal 1, quiz.questions.count
-
   end
 
   # Test locking database
@@ -112,5 +115,21 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
 
     page.assert_no_selector('.alert-warning', minimum: 1)
     assert has_css?('li', text: 'This is the answer')
+  end
+
+  def login
+
+      visit new_user_session_path
+      login_alerts = page.all('.alert-warning')
+
+    unless login_alerts.any?
+
+      user = users(:one)
+
+      fill_in('user_email', with: user.email)
+      fill_in('user_password', with: 'Password1')
+
+      page.find('.btn-success').click
+    end
   end
 end

@@ -1,4 +1,4 @@
-class Admin::QuestionsController < ApplicationController
+class Admin::QuestionsController < AdminController
   def new
     @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.new()

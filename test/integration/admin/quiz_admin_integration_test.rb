@@ -51,6 +51,23 @@ class QuizIntegrationTest < ActionDispatch::IntegrationTest
     page.assert_no_selector('.alert-warning', minimum: 1)
   end
 
+  test 'admins can remove a question form a quiz' do
+    quiz = quizzes(:ruby_quiz)
+
+    assert_equal 2, quiz.questions.count
+
+    visit admin_quiz_path(quiz)
+
+    within 'tbody tr:last-child' do
+      click_button 'Delete'
+    end
+
+    page.assert_no_selector('.alert-warning', minimum: 1)
+    page.assert_selector('.alert-info', minimum: 1)
+    assert_equal 1, quiz.questions.count
+
+  end
+
   # Test locking database
   # test 'admins can add a question and answers to a quiz' do
   #   Capybara.current_driver = Capybara.javascript_driver

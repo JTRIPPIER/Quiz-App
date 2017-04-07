@@ -9,16 +9,16 @@
 
 <table class="table">
   <tbody>
-    <% @quiz.questions.each do |q| %>
+    <% @quiz.questions.each do |question| %>
     <tr>
       <td>
         <p class="panel-body">
-          <%= q.body %>
+          <%= question.body %>
         </p>
       </td>
       <td>
         <ul>
-          <% q.answers.each do |a| %>
+          <% question.answers.each do |a| %>
           <li>
             <%= a.body %>
           </li>
@@ -26,10 +26,10 @@
         </ul>
       </td>
       <td>
-        <%= link_to "Add answers", new_admin_quiz_question_answer_path(@quiz, q), class: "btn btn-info" %>
+        <%= link_to "Add answers", new_admin_quiz_question_answer_path(@quiz, question), class: "btn btn-info" %>
       </td>
       <td>
-        <button class="btn btn-danger">Delete</button>
+        <%= button_to "Delete", admin_quiz_question_path(@quiz, question), :class => "btn btn-danger", :method => :delete %>
       </td>
     </tr>
     <% end %>

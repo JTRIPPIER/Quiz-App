@@ -1,3 +1,7 @@
+<p>
+  <%= link_to 'back', admin_quiz_path(@quiz) %>
+</p>
+
 <h3>Add a new question</h3>
 
 <%= form_for @question, url: admin_quiz_questions_path(@quiz), :html => {:class => "form-horizontal"} do |form| %>

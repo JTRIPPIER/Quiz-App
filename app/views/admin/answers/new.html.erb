@@ -1,3 +1,5 @@
+<div><%= link_to 'back', admin_quizzes_path %></div>
+
 <h3>Add a new answer</h3>
 
 <%= form_for @answer, url: admin_quiz_question_answers_path(@quiz, @question) do |f| %>
